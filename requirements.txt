@@ -1,4 +1,4 @@
-discord==1.7.3
+discord==2.3.2
 python-dotenv==0.20.0
 typing-extensions==3.10.0.2
 lyrics-extractor==3.0.1

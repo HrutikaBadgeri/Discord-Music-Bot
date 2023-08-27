@@ -1,21 +1,31 @@
 import os
 from discord.ext import commands
 from dotenv import load_dotenv
-
+import discord
+import asyncio
 load_dotenv()
 
-#  import all of the cogs
-from help import help
-from music import music
-
-bot = commands.Bot(command_prefix=">")
+bot = commands.Bot(command_prefix=">", intents=discord.Intents.all())
 
 # remove the default help command so that we can write our own
 bot.remove_command('help')
 
-# register the class with the bot
-bot.add_cog(help(bot))
-bot.add_cog(music(bot))
+
+@bot.event
+async def on_ready():
+    print('Success: Bot is connected to discord')
+
+
+# load all cogs
+async def load():
+    for filename in os.listdir("./cogs"):
+        if filename.endswith(".py"):
+            await bot.load_extension(f"cogs.{filename[:-3]}")
+
 
 # start the  bot with our token
-bot.run(os.getenv("TOKEN"))
+async def main():
+    async with bot:
+        await load()
+        await bot.start(os.getenv("TOKEN"))
+asyncio.run(main())
