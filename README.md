@@ -4,7 +4,8 @@
   - Simple & easy to use
   - YouTube support 
   - Personalized server access
-  
+  ![image](https://github.com/user-attachments/assets/b2737d83-c1fe-458e-bfae-5d15faea4908)
+
 ### Commands
 
 Here are all the available commands in the bot!
